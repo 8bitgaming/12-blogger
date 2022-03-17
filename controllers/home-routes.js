@@ -94,8 +94,19 @@ router.get('/', (req, res) => {
       res.redirect('/');
       return;
     }
-  
-    res.render('login');
+    
+    res.render('login', {
+    });
+  });
+
+  router.get('/register', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+    
+    res.render('register', {
+    });
   });
 
 module.exports = router;
