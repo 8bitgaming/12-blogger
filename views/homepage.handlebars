@@ -1,18 +1,39 @@
-<ol class="post-list">
+{{#if loggedIn}}
   {{#each posts as |post|}}
-  <li>
-    <article class="post">
-      <div class="title">
-        <a href="{{post.post_url}}" target="_blank">{{post.title}}</a>
-        <span>({{post.post_url}})</span>
+    <article class="post w3-margin-top">
+      <div class="title w3-blue-grey ">
+         <a href="{{post.post_content}}" target="_blank">   
+          <div class="w3-container w3-padding-16 w3-text-light-grey">{{post.title}} 
+              <span class="w3-right-align w3-text-light-grey" >(Posted by {{user.username}} at {{post.created_at}})
+              </span>
+            </div>
+        </a>
       </div>
-      <div class="meta">
-        {{post.vote_count}} point(s) by {{post.user.username}} on
-        {{post.created_at}}
-        |
-        <a href="/post/{{post.id}}">{{post.comments.length}} comment(s)</a>
+        <div>
+        <p class="w3-container">
+          {{post.post_content}}
+        </p>
       </div>
     </article>
-  </li>
   {{/each}}
-</ol>
+  {{/if}}
+
+  {{#unless loggedIn}}
+  {{#each posts as |post|}}
+    <article class="post w3-margin-top">
+      <div class="title w3-blue-grey ">
+          <div class="w3-container w3-padding-16 w3-text-light-grey">{{post.title}} 
+              <span class="w3-right-align w3-text-light-grey" >(Posted by {{user.username}} at {{post.created_at}})
+              </span>
+            </div>
+      </div>
+        <div>
+        <p class="w3-container">
+          {{post.post_content}}
+        </p>
+      </div>
+    </article>
+  {{/each}}
+  {{/unless}}
+
+  

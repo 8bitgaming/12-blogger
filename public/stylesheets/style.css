@@ -22,6 +22,7 @@ a:hover {
   color: #3486eb;
 }
 
+
 button {
   background-color: #225ca3;
   border: 0;
@@ -35,6 +36,10 @@ button {
 
 button:hover {
   background-color: #3486eb;
+}
+
+.post {
+  border: 3px solid teal ;
 }
 
 .post-list {
@@ -118,15 +123,15 @@ main {
   background-color: #ff643d;
 }
 
-.post {
+/* .post {
   margin-bottom: 2%;
   line-height: 150%;
-}
+} */
 
 .post .title span {
   font-style: italic;
-  font-size: 90%;
-  color: #7d7d7d;
+  font-size: 65%;
+  color: lightgray;
 }
 
 .edit-link {

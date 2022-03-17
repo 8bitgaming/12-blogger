@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
     Post.findAll({
       attributes: [
         'id',
-        'post_url',
+        'post_content',
         'title',
         'created_at',
         [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
@@ -48,7 +48,7 @@ router.get('/', (req, res) => {
       },
       attributes: [
         'id',
-        'post_url',
+        'post_content',
         'title',
         'created_at',
         [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
@@ -89,6 +89,43 @@ router.get('/', (req, res) => {
       });
   });
 
+  router.get('/dashboard', (req, res) => {
+    if (!req.session.loggedIn) {
+        res.redirect('/login');
+        return;
+    }
+
+    // finds one user
+    User.findOne({
+        where: {
+            id: req.session.user_id
+        },
+        include: [
+            {
+                model: Post,
+                attributes: ['id','post_content', 'title','created_at'],
+            },
+        ]
+    })
+        .then(dbPostData => {
+          console.log("dbPostData", dbPostData.posts[0])
+            if (!dbPostData) {
+                res.status(404).json({ message: 'No blog posts found, use the button below to create one.' });
+                return;
+            }
+
+            const posts = dbPostData.posts.map(post => post.get({ plain: true }));
+
+            res.render('dashboard', {
+                loggedIn: req.session.loggedIn,
+                posts,
+                username: dbPostData.username,
+                user_id: req.session.user_id,
+            });
+        })
+});
+
+
   router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
       res.redirect('/');
@@ -99,6 +136,7 @@ router.get('/', (req, res) => {
     });
   });
 
+  //added new route specifically for the register page
   router.get('/register', (req, res) => {
     if (req.session.loggedIn) {
       res.redirect('/');
@@ -106,6 +144,26 @@ router.get('/', (req, res) => {
     }
     
     res.render('register', {
+    });
+  });
+
+  router.get('/edit-post', (req, res) => {
+    if (!req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+    
+    res.render('edit-post', {
+    });
+  });
+
+  router.get('/create-post', (req, res) => {
+    if (!req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+    
+    res.render('create-post', {
     });
   });
 

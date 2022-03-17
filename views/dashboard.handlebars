@@ -1,3 +1,22 @@
-<div>
-  <button type="submit" class="create-blog-post">New Blog Post</button>
+<div class="get-characters w3-container">
+    <h3>{{this.username}}'s posts:</h3>
+    
+  {{#each this.posts }}
+  <section class="blog-post">
+    <div class="meta">
+      {{title}}<br>{{post_content}} Created At {{created_at}} <br>
+    </div>
+  </section>
+  {{/each}}
 </div>
+
+<div>
+  <button id="dashboard" class="btn-no-style"><a href="/create-post">New Blog Post</a></button>
+</div>
+
+{{!-- <script src="/javascript/dashboard.js"></script> --}}
+{{!-- <script src="/javascript/goToBattlePage.js"></script> --}}
+
+
+
+
