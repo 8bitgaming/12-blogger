@@ -1,21 +1,33 @@
-<div class="get-characters w3-container">
+<div class="get-characters w3-container"> </div>
     <h3>{{this.username}}'s posts:</h3>
     
-  {{#each this.posts }}
-  <section class="blog-post">
-    <div class="meta">
-      {{title}}<br>{{post_content}} Created At {{created_at}} <br>
-    </div>
-  </section>
+{{#if loggedIn}}
+  {{#each posts as |post|}}
+    <article class="post w3-margin-top">
+      <div class="title w3-blue-grey ">
+         <a href="{{post.post_content}}" target="_blank">   
+          <div class="w3-container w3-padding-16 w3-text-light-grey">{{post.title}} 
+              <span class="w3-right-align w3-text-light-grey" >(Posted by {{user.username}} at {{post.created_at}})
+              </span>
+            </div>
+        </a>
+      </div>
+        <div>
+        <p class="w3-container">
+          {{post.post_content}}
+        </p>
+      </div>
+    </article>
   {{/each}}
-</div>
+  {{/if}}
 
 <div>
-  <button id="dashboard" class="btn-no-style"><a href="/create-post">New Blog Post</a></button>
+  <button id="dashboard" class="w3-button"><a href="/create-post">New Blog Post</a></button>
 </div>
 
 {{!-- <script src="/javascript/dashboard.js"></script> --}}
 {{!-- <script src="/javascript/goToBattlePage.js"></script> --}}
+
 
 
 
