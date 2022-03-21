@@ -5,9 +5,9 @@
   {{#each posts as |post|}}
     <article class="post w3-margin-top">
       <div class="title w3-blue-grey ">
-         <a href="{{post.post_content}}" target="_blank">   
+         <a href="/dashboard/edit/{{id}}">   
           <div class="w3-container w3-padding-16 w3-text-light-grey">{{post.title}} 
-              <span class="w3-right-align w3-text-light-grey" >(Posted by {{user.username}} at {{post.created_at}})
+              <span class="w3-right-align w3-text-light-grey" >(Posted at {{post.created_at}})
               </span>
             </div>
         </a>
@@ -21,12 +21,10 @@
   {{/each}}
   {{/if}}
 
-<div>
-  <button id="dashboard" class="w3-button"><a href="/create-post">New Blog Post</a></button>
+<div class="w3-padding-large w3-center">
+  <button type="button" onclick="location.href='/create-post'">+ New Blog Post</button>
 </div>
 
-{{!-- <script src="/javascript/dashboard.js"></script> --}}
-{{!-- <script src="/javascript/goToBattlePage.js"></script> --}}
 
 
 

@@ -2,7 +2,7 @@
   {{#each posts as |post|}}
     <article class="post w3-margin-top">
       <div class="title w3-blue-grey ">
-         <a href="{{post.post_content}}" target="_blank">   
+         <a href="/post/{{id}}">
           <div class="w3-container w3-padding-16 w3-text-light-grey">{{post.title}} 
               <span class="w3-right-align w3-text-light-grey" >(Posted by {{user.username}} at {{post.created_at}})
               </span>
