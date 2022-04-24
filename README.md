@@ -17,7 +17,7 @@ A simple blogging site that allows different users to write, edit and delete blo
 
 
 ## Installation instructions 
-Use the application at: https://8bitgaming.github.io/12-blogger/
+Use the application at: https://blogger-jg-12.herokuapp.com/
 
 ## Usage instructions 
 Either create an account or login if one exists. Use the dashboard to create new posts and view previous ones. Click on the title to edit or delete an existing post. From the main page, click the title to add and view comments.
